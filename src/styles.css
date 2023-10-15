@@ -1,0 +1,11 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.card1 {
+  background-color: #282c34;
+  height: 200px;
+  width: 300px;
+  color: white;
+}
