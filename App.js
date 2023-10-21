@@ -19,32 +19,42 @@ function App() {
 
     {
       fname : "",
-      lname : ""
+      lname : "",
+      email : ""
     } 
 
   )
 
   function handlechange(event){
 
-    let name = event.target.name;
+    let outputname = event.target.name;
     let new_val = event.target.value;
-    console.log(name);
-    console.log(new_val);
+    // console.log(name);
+    // console.log(new_val);
 
-    Setfullname((prevValue)=>{ // function needed as for objects key value is deleted so there is no way that we can get the previous values again.
-      if(name === 'first-name'){
-        return{
-          fname : new_val,
-          lname : prevValue.lname
-        }
-      }
-      else{
-        return{
-          fname : prevValue.fname,
-          lname : new_val
-        }
-      }
-    })
+    // Setfullname((prevValue)=>{ // function needed as for objects key value is deleted so there is no way that we can get the previous values again.
+    //   if(name === 'first-name'){
+    //     return{
+    //       fname : new_val,
+    //       lname : prevValue.lname,
+    //       email : prevValue.email
+    //     }
+    //   }
+    //   else{
+    //     return{
+    //       fname : prevValue.fname,
+    //       lname : new_val,
+    //       email : prevValue.email
+    //     }
+    //   }
+    // })
+
+    Setfullname((preval)=>{
+      return{
+      ...preval,
+      [outputname] : new_val
+      };
+    });
     
 
   }
@@ -66,9 +76,11 @@ function App() {
     <About/> */}
     <form>
       <h1>Hello {fullname.fname} {fullname.lname}</h1>
+      <p>{fullname.email}</p>
       <div className='input-class'>
-        <input placeholder='first name' type='text' onChange={handlechange} name = "first-name" value = {fullname.fname}/>
-        <input placeholder='last-name' type='text' onChange={handlechange} name="last-name" value = {fullname.lname}/>
+        <input placeholder='first name' type='text' onChange={handlechange} name = "fname" value = {fullname.fname}/>
+        <input placeholder='last-name' type='text' onChange={handlechange} name="lname" value = {fullname.lname}/>
+        <input placeholder='email' type='email' onChange={handlechange} name="email" value = {fullname.email}/>
         <button className='btn-1'>Submit</button>
       </div>
     </form>
